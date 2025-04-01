@@ -9,44 +9,72 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var showDetails = false
+    @AppStorage("shouldDisplayAnimation")
+    var shouldDisplayAnimation = true
     
     var body: some View {
-        VStack {
-            Text("Pokemon: Let's go PIKACHU!")
-                .font(.headline)
-            
-            Text("Nintendo Switch Game")
-                .font(.subheadline)
-        }
-        .foregroundStyle(.red)
-        .padding()
-        
-        VStack { // Implicitly uses @ViewBuilder
-            Text("Main Content")
-
-            if showDetails {
-                Text("Detailed Information")
-                Image(systemName: "info.circle")
-            } else {
-                Text("Tap button for details")
+        ScrollView {
+            VStack() {
+                images
+                
+                VStack(alignment: .leading) {
+                    Text("title")
+                        .font(.headline)
+                    
+                    Text("subtitle")
+                        .font(.subheadline)
+                    
+                    HStack(spacing: 0) {
+                        ForEach(1...5, id: \.self) { _ in
+                            Image(systemName: "star")
+                                .foregroundStyle(.yellow)
+                        }
+                    }
+                    .padding(.bottom, 20)
+                    
+                    Text("description")
+                        .font(.body)
+                    
+                }
             }
-
-            Button(showDetails ? "Hide Details" : "Show Details") {
-                showDetails.toggle()
-            }
+            .foregroundStyle(.red)
+            .padding()
         }
-        
-        MyCustomContainer {
-            Text("Item 1")
-            Text("Item 2")
-            Image(systemName: "globe")
+    }
+    
+    var images: some View {
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal) {
+                HStack() {
+                    Image("pikachu")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 175)
+                    
+                    ForEach(0...2, id: \.self) { item in
+                        Image("image-\(item)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                }
+            }
+            .onAppear {
+                guard shouldDisplayAnimation else { return }
+                withAnimation {
+                    proxy.scrollTo(0, anchor: .center)
+                    shouldDisplayAnimation = false
+                }
+            }
         }
     }
 }
 
 #Preview {
     ContentView()
+        .onAppear {
+            print("Preview launched!")
+            UserDefaults.standard.removeObject(forKey: "shouldDisplayAnimation")
+        }
 }
 
 struct MyCustomContainer<Content: View>: View {
