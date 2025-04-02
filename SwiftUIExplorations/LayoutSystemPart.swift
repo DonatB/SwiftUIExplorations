@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct LayoutSystemPart: View {
     
     @AppStorage("shouldDisplayAnimation")
     var shouldDisplayAnimation = true
@@ -70,7 +70,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    LayoutSystemPart()
         .onAppear {
             print("Preview launched!")
             UserDefaults.standard.removeObject(forKey: "shouldDisplayAnimation")
