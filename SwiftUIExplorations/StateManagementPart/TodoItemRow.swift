@@ -22,6 +22,7 @@ struct TodoItemRow: View {
                 if let description = item.description {
                     Text(description)
                         .font(.subheadline)
+                        .strikethrough(item.isDone)
                 }
             }
             .padding(.leading)
