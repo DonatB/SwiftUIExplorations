@@ -12,7 +12,7 @@ struct TodoItemMainView: View {
     @StateObject var viewModel = TodoItemsListViewModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach($viewModel.todoItems) { $todoItems in
                     TodoItemRow(item: $todoItems.onNewValue {

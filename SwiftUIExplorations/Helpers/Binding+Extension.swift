@@ -17,4 +17,12 @@ extension Binding {
             }
         )
     }
+    
+    func whenEmpty<Wrapped>(_ defaultValue: Wrapped) -> Binding<Wrapped> where Value == Wrapped? {
+        Binding<Wrapped>(
+            get: { wrappedValue ?? defaultValue },
+            set: { wrappedValue = $0 }
+        )
+    }
+    
 }
