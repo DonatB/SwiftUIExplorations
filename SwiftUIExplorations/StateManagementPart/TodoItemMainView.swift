@@ -14,16 +14,30 @@ struct TodoItemMainView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach($viewModel.todoItems) { $todoItems in
-                    TodoItemRow(item: $todoItems.onNewValue {
-                        viewModel.reorder()
-                    })
+                ForEach($viewModel.todoItems) { $todoItem in
+                    NavigationLink(value: todoItem) {
+                        TodoItemRow(item: $todoItem.onNewValue {
+                            viewModel.reorder()
+                        })
+                    }
                 }
                 .onDelete (perform: viewModel.deleteItems(at:))
                 .onMove(perform: viewModel.moveItems(from:to:))
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Today's Tasks")
+            .navigationDestination(for: TodoItem.self, destination: { todoItem in
+                let todoItemBinding = Binding(
+                    get: {
+                        viewModel.todoItems.first(where: { $0.id == todoItem.id })!
+                    },
+                    set: { newItem in
+                        let index = viewModel.todoItems.firstIndex(where: { $0.id == todoItem.id })!
+                        viewModel.todoItems[index] = newItem
+                    }
+                )
+                TodoItemDetailView(item: todoItemBinding)
+            })
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     EditButton()

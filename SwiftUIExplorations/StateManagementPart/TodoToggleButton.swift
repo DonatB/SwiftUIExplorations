@@ -34,6 +34,7 @@ struct TodoToggleButton: View {
             }
         }
         .scaledToFit()
+        .buttonStyle(.borderless)
     }
 }
 

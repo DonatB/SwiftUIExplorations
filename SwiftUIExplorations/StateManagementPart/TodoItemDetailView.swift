@@ -12,9 +12,11 @@ struct TodoItemDetailView: View {
     @Binding var item: TodoItem
     
     var body: some View {
-        VStack {
+        Form {
             TextField("Title", text: $item.title)
+                .font(.headline)
             TextField("Description", text: $item.description.whenEmpty(""))
+                .font(.subheadline)
         }
     }
 }
