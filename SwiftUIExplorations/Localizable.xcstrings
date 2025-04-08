@@ -1,13 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "!" : {
-
-    },
     "About meeeeeeeeeeeeeeeeeeeee view." : {
-
-    },
-    "About us" : {
 
     },
     "description" : {
@@ -24,7 +18,25 @@
     "Description" : {
 
     },
+    "Dismiss" : {
+
+    },
+    "Feature n°1️⃣" : {
+
+    },
+    "Feature n°2️⃣" : {
+
+    },
+    "Feature n°3️⃣" : {
+
+    },
+    "First" : {
+
+    },
     "GOTTA CATCH EM ALL!!" : {
+
+    },
+    "More info?" : {
 
     },
     "My Custom Footer" : {
@@ -39,6 +51,9 @@
     "POKEMON" : {
 
     },
+    "Second" : {
+
+    },
     "subtitle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -49,6 +64,9 @@
           }
         }
       }
+    },
+    "Third" : {
+
     },
     "title" : {
       "extractionState" : "manual",
@@ -65,9 +83,6 @@
 
     },
     "Today's Tasks" : {
-
-    },
-    "Todo View" : {
 
     }
   },

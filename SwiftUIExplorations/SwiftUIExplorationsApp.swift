@@ -10,6 +10,7 @@ import SwiftUI
 enum TabSelection {
     case todoView
     case aboutUs
+    case thirdView
 }
 
 @main
@@ -19,16 +20,30 @@ struct SwiftUIExplorationsApp: App {
     
     var body: some Scene {
         WindowGroup() {
+            //Up to Navigation part
+//            TabView(selection: $currentTab) {
+//                Tab("Todo View", systemImage: "calendar", value: .todoView) {
+//                    TodoItemMainView()
+//                }
+//                .badge(2)
+//                
+//                Tab("About us", systemImage: "questionmark.circle.fill", value: .aboutUs) {
+//                    AboutView()
+//                }
+//                .badge("!")
+//            }
             TabView(selection: $currentTab) {
-                Tab("Todo View", systemImage: "calendar", value: .todoView) {
-                    TodoItemMainView()
+                Tab("First", systemImage: "calendar", value: .todoView) {
+                    FirstFeatureView()
                 }
-                .badge(2)
                 
-                Tab("About us", systemImage: "questionmark.circle.fill", value: .aboutUs) {
-                    AboutView()
+                Tab("Second", systemImage: "questionmark.circle.fill", value: .aboutUs) {
+                    SecondFeatureView()
                 }
-                .badge("!")
+                
+                Tab("Third", systemImage: "eraser", value: .thirdView) {
+                    ThirdFeatureView()
+                }
             }
         }
     }
